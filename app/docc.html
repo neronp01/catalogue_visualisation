@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<script src="js/d3/d3.min.js"></script>
+
+
+<div class="container-fluid">
+
+    <div id="bodyTest"></div>
+    <script>
+
+    </script>
+    <div class="row">
+        <div class="col" id="coteGauche" style="width: 100%" height="1100">
+            <svg width="500" height="70" id="menuText">
+
+                <text  x="30" y="55" style= "fill:rgb(255,255,255);font-size: 48px">Édition & Modification</text>
+            </svg>
+
+            <svg width="1100" height="70" id="barmenue">
+                <rect  width="1100" height="70" style= "fill:rgb(161,161,161)"/>
+            </svg>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <input style="width: 100%" id="nameCircle" placeholder="Inscrire le titre du projet">
+                </div>
+                <div class="col">
+                    <input style="width: 100%" placeholder="Inscrire votre nom">
+                </div>
+            </div>
+
+   </div>
+        <div class="col" id="coteDroite">
+            <svg width="500" height="70" id="menuText">
+
+                <text  x="30" y="55" style= "fill:rgb(255,255,255);font-size: 48px">Doccumentation</text>
+            </svg>
+
+            <svg width="850" height="70" id="barmenue">
+                <rect  width="850" height="70" style= "fill:rgb(161,161,161)"/>
+            </svg>
+
+            <svg width="120" height="120" id="circlePhoto">
+                <circle cx="60" cy="60" r="50" style= "fill:rgb(191,191,191);stroke-width: 10;stroke:rgb(132,132,132)"/>
+            </svg>
+            <div class="scroll">
+                <div id="countainerDroit" class="docc"></div>
+                <div id="food_drink" class="docc"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script>
+
+var json1;
+
+
+
+
+ d3.queue()
+     .defer(d3.json, "data/flare.json")
+     .await(ready);
+
+
+ function ready(error, root) {
+     if (error) throw error;
+
+     var data = root;
+     var docc = [];
+     var objectName = "docc";
+     d3.select("#nameCircle")
+         .on("mouseout",function (){
+          var nomCircle = this.value;
+            trouverRoute(nomCircle);
+         });
+
+var titre;
+var premierNiveau = root.children;
+function dataModification(docc){
+    var tab = [],step1 = step1Json();
+    json1 = {"name":"flare","children":step1};
+    console.log(json1);
+    };
+
+function step1Json(){
+    var objParent,tab=[];
+    var step1 ={};
+    premierNiveau.forEach(function (p) {
+        var step2 = step2Json(p);
+        step1 = {"name":p.name,"children":step2};
+        tab.push(step1)
+    });
+    return tab;
+}
+function step2Json(p){
+    var objChild,objParent,tab=[],tab2=[];
+    p.children.forEach(function(q){
+        if(q.name === "graph"){
+            q.children.forEach(function (p1) {
+                objChild = {"name":p1.name,"size":p1.size,"docc":docc};
+                tab.push(objChild);
+                objParent = {"name":q.name,"children":tab}
+            })
+        }else{objParent = {"name":q.name,"children":q.children}}
+        tab2.push(objParent);
+    })
+    return tab2;
+}
+
+
+
+
+function trouverRoute(v){
+  //  var premierNiveau = root.children;
+    premierNiveau.forEach(function(d,i){
+        var nom = d.name;
+        if(v === nom){
+            data.children[i][objectName] = docc;}
+        var deuxiemeNiveau = d.children;
+        deuxiemeNiveau.forEach(function (p1,p2) {
+            var nom = p1.name;
+            if(v === nom){
+                data.children[i].children[p2][objectName] = docc;
+                docc = data.children[i].children[p2].children[0].docc;
+                titre = data.children[i].children[p2].name;
+                parcourtDroite(docc);
+
+            }
+        })
+    })}
+
+var id_p = 0;
+var h2_count=0;
+function parcourtDroite(v) {
+
+    d3.selectAll(".text_droite, .text_gauche, .saut_ligne, .svg_separateur, h1, h2").remove();
+    var droite = d3.select("#countainerDroit");
+    var gauche = d3.select("#coteGauche")
+    v.forEach(function (p1,p2) {
+        var objName = Object.keys(p1)[0];
+
+        switch (objName){
+            case "p":
+            droite.append("div")
+            .attr("id",function(){return "p"+id_p;})
+            .attr("class","text_droite")
+            .attr("width",840)
+            .on("dblclick",function (d) {
+             var doccTemp = [];
+                docc.map(function(q1,q2){
+                    if(q2!==p2){
+                        return doccTemp.push(q1);
+                    }
+                });
+                docc = doccTemp;
+
+                d3.select(this).remove();
+                parcourtDroite(docc);
+            })
+            .append("p")
+            .text(p1[objName]);
+            gauche.append("div")
+                .attr("class","text_gauche")
+                .style("width",840)
+                .append("input")
+                .attr("value",p1[objName])
+                .style("width","100%")
+                .on("mouseout",function(){
+                    docc[p2]={"p":this.value};
+                    parcourtDroite(docc);
+                })
+        break;
+            case "SautLigne":
+
+                if(p1[objName]==="br") {
+                    droite.append("div")
+                        .attr("class", "saut_ligne")
+                        .on("click", function () {
+                            d3.select(this).remove();
+                            var doccTemp = [];
+                            docc.map(function(q1,q2){
+                                if(q2!==p2){
+                                    return doccTemp.push(q1);
+                                }
+                            });
+                            docc = doccTemp;
+                            parcourtDroite(docc);
+                        })
+                        .append(p1[objName])
+                }else if(p1[objName]==="hr"){
+                    droite.append("div")
+                        .attr("class", "saut_ligne")
+                        .append(p1[objName])
+                        .on("click", function () {
+                            d3.select(this).remove();
+                            var doccTemp = [];
+                            docc.map(function(q1,q2){
+                                if(q2!==p2){
+                                    return doccTemp.push(q1);
+                                }
+                            });
+                            docc = doccTemp;
+                            parcourtDroite(docc);
+                        })
+                }else{
+                    var svg = droite
+                        .append("svg")
+                        .attr("id",p1[objName])
+                        .attr("width", 840)
+                        .attr("height", 30)
+                        .attr("class","svg_separateur")
+                        .on("click", function () {
+                            d3.select(this).remove();
+                            var doccTemp = [];
+                            docc.map(function(q1,q2){
+                                if(q2!==p2){
+                                    return doccTemp.push(q1);
+                                }
+                            });
+                            docc = doccTemp;
+                            parcourtDroite(docc);
+                        });
+                    svg.append("circle")
+                        .attr("cx",350)
+                        .attr("cy",20)
+                        .attr("r", 10)
+                        .style("fill","rgb(225,225,225)")
+                    svg.append("circle")
+                        .attr("cx",380)
+                        .attr("cy",20)
+                        .attr("r", 10)
+                        .style("fill","rgb(225,225,225)")
+                    svg.append("circle")
+                        .attr("cx",410)
+                        .attr("cy",20)
+                        .attr("r", 10)
+                        .style("fill","rgb(225,225,225)")
+                }
+                break;
+            case "h1":
+                droite.append("h1")
+                    .text(titre)
+                    .on("click",function (d) {
+                        var doccTemp = [];
+                        docc.map(function(q1,q2){
+                            if(q2!==p2){
+                                return doccTemp.push(q1);
+                            }
+                        });
+                        docc = doccTemp;
+                        d3.select(this).remove();
+                        parcourtDroite(docc);
+                    });
+
+                break;
+
+            case "h2":
+                droite.append("h2")
+                    .text(p1.h2)
+                    .on("click",function (d) {
+                        var doccTemp = [];
+                        docc.map(function(q1,q2){
+                            if(q2!==p2){
+                                return doccTemp.push(q1);
+                            }
+                        });
+                        docc = doccTemp;
+                        d3.select(this).remove();
+                        parcourtDroite(docc);
+
+                    });
+
+                gauche.append("div")
+                    .attr("class","text_gauche")
+                    .style("width",840)
+                    .append("input")
+                    .attr("value",p1.h2)
+                    .style("width","100%")
+
+                    .on("mouseout",function(){
+                        docc[p2]={"p":this.value};
+                        parcourtDroite(docc);
+                    });
+
+                break;
+
+            case "svg":
+//                droite.append("h2")
+//                    .text(p1.h2)
+//                    .on("click",function (d) {
+//                        var doccTemp = [];
+//                        docc.map(function(q1,q2){
+//                            if(q2!==p2){
+//                                return doccTemp.push(q1);
+//                            }
+//                        });
+//                        docc = doccTemp;
+//                        d3.select(this).remove();
+//                        parcourtDroite(docc);
+//                    });
+
+                gauche.append("div")
+                    .attr("class","text_gauche")
+                    .style("width",840)
+                    .append("input")
+                    .attr("placeholder","nom du svg")
+                    .attr("value",p1.h2)
+                    .style("width","100%")
+
+                    .on("mouseout",function(){
+                        docc[p2]={"svg":this.value};
+                        parcourtDroite(docc);
+                    });
+
+                break;
+    }
+        })
+}
+
+
+
+var svg_separateur_count =0;
+
+   var  buttonCircle = d3.select("#coteGauche")
+         .append("svg")
+         .attr("class","but_circle")
+         .attr("width", 950)
+         .attr("height", 100),
+
+       hr_button = buttonCircle
+           .append("circle")
+           .attr("cx",190)
+           .attr("cy",50)
+           .attr("r", 40)
+           .attr("class","sautLigne")
+           .style("fill","rgb(225,225,225)")
+           .on("click",function(){
+               docc.push({"SautLigne":"hr"});
+               svg_separateur_count++;
+               parcourtDroite(docc);
+           }),
+
+       hr_text = buttonCircle
+           .append("text")
+           .attr("x",166)
+           .attr("y",55)
+           .attr("class","text_button")
+           .style("fill","rgb(132,132,132)")
+           .text("<hr>"),
+
+
+     h2_button = buttonCircle
+         .append("circle")
+         .attr("cx",300)
+         .attr("cy",50)
+         .attr("r", 40)
+         .style("fill","rgb(225,225,225)")
+         .on("click",function(){
+             docc.push({"h2":""});
+             svg_separateur_count++;
+             parcourtDroite(docc);
+             h2_count++;
+         }),
+
+     svg_text = buttonCircle
+         .append("text")
+         .attr("x",276)
+         .attr("y",55)
+         .attr("class","text_button")
+         .style("fill","rgb(132,132,132)")
+         .text("<h2>"),
+
+     br_button = buttonCircle
+         .append("circle")
+         .attr("cx",410)
+         .attr("cy",50)
+         .attr("r", 40)
+         .style("fill","rgb(225,225,225)")
+         .on("click",function(){
+
+             docc.push({"SautLigne":"br"})
+         }),
+
+     text_br = buttonCircle
+         .append("text")
+         .attr("x",388)
+         .attr("y",55)
+         .attr("class","text_button")
+         .style("fill","rgb(132,132,132)")
+         .text("<br>");
+
+
+     p_button = buttonCircle
+         .append("circle")
+         .attr("cx",520)
+         .attr("cy",50)
+         .attr("r", 40)
+         .style("fill","rgb(225,225,225)")
+         .on("click",function(){
+             id_p++;
+             docc.push({"p":"<p>"+id_p})
+             parcourtDroite(docc);
+         }),
+
+     p_text = buttonCircle
+         .append("text")
+         .attr("x",502)
+         .attr("y",55)
+         .attr("class","text_button")
+         .style("fill","rgb(132,132,132)")
+         .text("<p>"),
+
+     svg_button = buttonCircle
+         .append("circle")
+         .attr("cx",630)
+         .attr("cy",50)
+         .attr("r", 40)
+         .style("fill","rgb(225,225,225)")
+         .on("click",function(){
+             docc.push({"SautLigne":"svgSeparateur"+svg_separateur_count});
+             svg_separateur_count++;
+             parcourtDroite(docc);
+                 }),
+
+     svg_text = buttonCircle
+         .append("text")
+         .attr("x",600)
+         .attr("y",55)
+         .attr("class","text_button")
+         .style("fill","rgb(132,132,132)")
+         .text("<svg>"),
+
+
+         code_button = buttonCircle
+             .append("circle")
+             .attr("cx",740)
+             .attr("cy",50)
+             .attr("r", 40)
+             .style("fill","rgb(225,225,225)")
+             .on("click",function(){
+                 docc.push({"svg":"path"});
+                 svg_separateur_count++;
+                 parcourtDroite(docc);
+             }),
+
+         code_text = buttonCircle
+             .append("text")
+             .attr("x",703)
+             .attr("y",55)
+             .attr("class","text_button")
+             .style("fill","rgb(132,132,132)")
+             .text("<code>");
+
+     json_button = buttonCircle
+         .append("circle")
+         .attr("cx",850)
+         .attr("cy",50)
+         .attr("r", 40)
+         .style("fill","rgb(225,225,225)")
+         .on("click",function(){
+             dataModification(docc);
+             treeData = JSON.parse( JSON.stringify(json1) );
+             var url = 'data:text/json;charset=utf8,' + encodeURIComponent( JSON.stringify(treeData));
+             window.open(url, '_blank');
+             window.focus();
+         }),
+
+         json_text = buttonCircle
+             .append("text")
+             .attr("x",817)
+             .attr("y",55)
+             .attr("class","text_button")
+             .style("fill","rgb(132,132,132)")
+             .text("<json>");
+ }
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

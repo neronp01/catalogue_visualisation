@@ -1,0 +1,408 @@
+[
+        {
+            "canada":
+            [
+                {
+                    "date": "1-May-12",
+                    "close": 68.13,
+                    "open": 34.12
+                },
+                {
+                    "date": "30-Apr-12",
+                    "close": 63.98,
+                    "open": 45.56
+                },
+                {
+                    "date": "27-Apr-12",
+                    "close": 67,
+                    "open": 67.89
+                },
+                {
+                    "date": "26-Apr-12",
+                    "close": 89.7,
+                    "open": 78.54
+                },
+                {
+                    "date": "25-Apr-12",
+                    "close": 99,
+                    "open": 89.23
+                },
+                {
+                    "date": "24-Apr-12",
+                    "close": 130.28,
+                    "open": 99.23
+                },
+                {
+                    "date": "23-Apr-12",
+                    "close": 166.7,
+                    "open": 101.34
+                },
+                {
+                    "date": "20-Apr-12",
+                    "close": 234.98,
+                    "open": 122.34
+                },
+                {
+                    "date": "19-Apr-12",
+                    "close": 345.44,
+                    "open": 134.56
+                },
+                {
+                    "date": "18-Apr-12",
+                    "close": 443.34,
+                    "open": 160.45
+                },
+                {
+                    "date": "17-Apr-12",
+                    "close": 543.7,
+                    "open": 180.34
+                },
+                {
+                    "date": "16-Apr-12",
+                    "close": 580.13,
+                    "open": 210.23
+                },
+                {
+                    "date": "13-Apr-12",
+                    "close": 605.23,
+                    "open": 223.45
+                },
+                {
+                    "date": "12-Apr-12",
+                    "close": 622.77,
+                    "open": 201.56
+                },
+                {
+                    "date": "11-Apr-12",
+                    "close": 626.2,
+                    "open": 212.67
+                },
+                {
+                    "date": "10-Apr-12",
+                    "close": 628.44,
+                    "open": 310.45
+                },
+                {
+                    "date": "9-Apr-12",
+                    "close": 636.23,
+                    "open": 350.45
+                },
+                {
+                    "date": "5-Apr-12",
+                    "close": 633.68,
+                    "open": 410.23
+                },
+                {
+                    "date": "4-Apr-12",
+                    "close": 624.31,
+                    "open": 430.56
+                },
+                {
+                    "date": "3-Apr-12",
+                    "close": 629.32,
+                    "open": 460.34
+                },
+                {
+                    "date": "2-Apr-12",
+                    "close": 618.63,
+                    "open": 510.34
+                },
+                {
+                    "date": "30-Mar-12",
+                    "close": 599.55,
+                    "open": 534.23
+                },
+                {
+                    "date": "29-Mar-12",
+                    "close": 609.86,
+                    "open": 578.23
+                },
+                {
+                    "date": "28-Mar-12",
+                    "close": 617.62,
+                    "open": 590.12
+                },
+                {
+                    "date": "27-Mar-12",
+                    "close": 614.48,
+                    "open": 560.34
+                },
+                {
+                    "date": "26-Mar-12",
+                    "close": 606.98,
+                    "open": 580.12
+                }
+            ]
+        },
+    {
+        "Nunavut":
+        [
+            {
+                "date": "1-May-12",
+                "close": 21.13,
+                "open": 14.12
+            },
+            {
+                "date": "30-Apr-12",
+                "close": 23.98,
+                "open": 5.56
+            },
+            {
+                "date": "27-Apr-12",
+                "close": 7,
+                "open": 6.89
+            },
+            {
+                "date": "26-Apr-12",
+                "close": 20.7,
+                "open": 10.54
+            },
+            {
+                "date": "25-Apr-12",
+                "close": 15,
+                "open": 2.23
+            },
+            {
+                "date": "24-Apr-12",
+                "close": 12.28,
+                "open": 9.23
+            },
+            {
+                "date": "23-Apr-12",
+                "close": 12.7,
+                "open": 7.34
+            },
+            {
+                "date": "20-Apr-12",
+                "close": 2.98,
+                "open": 1.34
+            },
+            {
+                "date": "19-Apr-12",
+                "close": 18.44,
+                "open": 4.56
+            },
+            {
+                "date": "18-Apr-12",
+                "close": 15.34,
+                "open": 4.45
+            },
+            {
+                "date": "17-Apr-12",
+                "close": 17.7,
+                "open": 11.34
+            },
+            {
+                "date": "16-Apr-12",
+                "close": 13.13,
+                "open": 13.23
+            },
+            {
+                "date": "13-Apr-12",
+                "close": 21.23,
+                "open": 12.45
+            },
+            {
+                "date": "12-Apr-12",
+                "close": 22.77,
+                "open": 13.56
+            },
+            {
+                "date": "11-Apr-12",
+                "close": 12.2,
+                "open": 11.67
+            },
+            {
+                "date": "10-Apr-12",
+                "close": 11.44,
+                "open": 9.45
+            },
+            {
+                "date": "9-Apr-12",
+                "close": 7.23,
+                "open": 6.45
+            },
+            {
+                "date": "5-Apr-12",
+                "close": 5.68,
+                "open": 4.23
+            },
+            {
+                "date": "4-Apr-12",
+                "close": 19.31,
+                "open": 15.56
+            },
+            {
+                "date": "3-Apr-12",
+                "close": 17.32,
+                "open": 14.34
+            },
+            {
+                "date": "2-Apr-12",
+                "close": 14.63,
+                "open": 12.34
+            },
+            {
+                "date": "30-Mar-12",
+                "close": 10.55,
+                "open": 4.23
+            },
+            {
+                "date": "29-Mar-12",
+                "close": 23.86,
+                "open": 12.23
+            },
+            {
+                "date": "28-Mar-12",
+                "close": 24.62,
+                "open": 15.12
+            },
+            {
+                "date": "27-Mar-12",
+                "close": 26.48,
+                "open": 17.34
+            },
+            {
+                "date": "26-Mar-12",
+                "close": 23.98,
+                "open": 14.12
+            }
+        ]
+    },
+    {
+        "Québec":
+        [
+            {
+                "date": "1-May-12",
+                "close": 100.13,
+                "open": 85.12
+            },
+            {
+                "date": "30-Apr-12",
+                "close": 90.98,
+                "open": 84.56
+            },
+            {
+                "date": "27-Apr-12",
+                "close": 89,
+                "open": 83.89
+            },
+            {
+                "date": "26-Apr-12",
+                "close": 87.7,
+                "open": 80.54
+            },
+            {
+                "date": "25-Apr-12",
+                "close": 85,
+                "open": 77.23
+            },
+            {
+                "date": "24-Apr-12",
+                "close": 89.28,
+                "open": 77.23
+            },
+            {
+                "date": "23-Apr-12",
+                "close": 90.7,
+                "open": 78.34
+            },
+            {
+                "date": "20-Apr-12",
+                "close": 92.98,
+                "open": 80.34
+            },
+            {
+                "date": "19-Apr-12",
+                "close": 95.44,
+                "open": 82.56
+            },
+            {
+                "date": "18-Apr-12",
+                "close": 96.34,
+                "open": 83.45
+            },
+            {
+                "date": "17-Apr-12",
+                "close": 99.7,
+                "open": 87.34
+            },
+            {
+                "date": "16-Apr-12",
+                "close": 102.13,
+                "open": 89.23
+            },
+            {
+                "date": "13-Apr-12",
+                "close": 106.23,
+                "open": 90.45
+            },
+            {
+                "date": "12-Apr-12",
+                "close": 109.77,
+                "open": 92.56
+            },
+            {
+                "date": "11-Apr-12",
+                "close": 110.2,
+                "open": 93.67
+            },
+            {
+                "date": "10-Apr-12",
+                "close": 115.44,
+                "open": 94.45
+            },
+            {
+                "date": "9-Apr-12",
+                "close": 105.23,
+                "open": 93.45
+            },
+            {
+                "date": "5-Apr-12",
+                "close": 104.68,
+                "open": 92.23
+            },
+            {
+                "date": "4-Apr-12",
+                "close": 102.31,
+                "open": 91.56
+            },
+            {
+                "date": "3-Apr-12",
+                "close": 101.32,
+                "open": 90.34
+            },
+            {
+                "date": "2-Apr-12",
+                "close": 100.63,
+                "open": 99.34
+            },
+            {
+                "date": "30-Mar-12",
+                "close": 99.55,
+                "open": 105.23
+            },
+            {
+                "date": "29-Mar-12",
+                "close": 98.86,
+                "open": 106.23
+            },
+            {
+                "date": "28-Mar-12",
+                "close": 93.62,
+                "open": 107.12
+            },
+            {
+                "date": "27-Mar-12",
+                "close": 92.48,
+                "open": 106.34
+            },
+            {
+                "date": "26-Mar-12",
+                "close": 96.98,
+                "open": 103.12
+            }
+        ]
+    }
+]
+
